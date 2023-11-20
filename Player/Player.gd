@@ -42,6 +42,15 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+@rpc("any_peer","call_remote","unreliable_ordered")
+func _set_position(p):
+	global_position = p
 
-func die():
+@rpc("any_peer","call_remote","unreliable_ordered")
+func _set_rotation(r):
+	rotation.y = r
+
+@rpc("any_peer","call_remote","unreliable_ordered")
+func _die():
 	queue_free()
